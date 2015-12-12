@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 def setFeatures(corpus,k):
-	colldictionary = []
+	listDictionary = []
 	for entry in corpus:
         	                arraywords = entry.split()
         	                dictionary = {}
@@ -12,6 +12,6 @@ def setFeatures(corpus,k):
         	                for word in arraywords:
         	                                        #print dictionary.get(word)
         	                                        dictionary[word] = dictionary.get(word) + 1;
-        	                colldictionary.append(dictionary)
-	return colldictionary
+        	                listDictionary.append(dictionary)
+	return listDictionary
 

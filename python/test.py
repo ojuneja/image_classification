@@ -7,7 +7,7 @@ import cv2
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 import setfeatures
-import normalize
+import normalizefraction
 import csv
 
 
@@ -17,7 +17,7 @@ vocab = []              # This is a list of every SIFT descriptor.
 raw_corpus = []
 imp = []
 sift = cv2.xfeatures2d.SIFT_create()
-mypath = '/usr/local/lib/python2.7/site-packages/miniminidataset'
+mypath = './minidataset'
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
 for image in onlyfiles:
@@ -29,6 +29,7 @@ for image in onlyfiles:
         #cv2.imwrite(image+'sift_keypoints.jpg',img)
         i = 1
         kp,desc = sift.compute(gray,kp)
+	#print desc
 	if desc != None:
                         img_features = []
                         for row in desc:
@@ -50,8 +51,8 @@ for entry in raw_corpus:
 #print corpus
 #now we are setting our features and thereby normalizing our values
 #print setfeatures.setFeatures(corpus,k)
-table =  normalize.normalize(setfeatures.setFeatures(corpus,k),k)
-print table
+table =  normalizefraction.normalize(setfeatures.setFeatures(corpus,k),k)
+#print table
 with open("output.csv", "wb") as f:
 	    writer = csv.writer(f)
 	    writer.writerows(table)
