@@ -1,5 +1,7 @@
 #!/usr/bin/python
 import numpy as np
+import variables as var
+
 def normalize(colldictionary,k):
 		table = []
 		normalizeTable = []
@@ -15,19 +17,21 @@ def normalize(colldictionary,k):
                 		stdDev = np.std(list)
                 		average = sum / size;
                 		for value in list:
-                		                normalizeValue = abs(value - average) / stdDev
-                		                normalizeList.append(normalizeValue)
+						if stdDev != 0:
+                		                	normalizeValue = abs(value - average) / stdDev
+	                		                normalizeList.append(normalizeValue)
+						else : normalizeList.append(0)
                 		counter+=1
 	        		table.append(normalizeList)
 		counter = 0
 		while counter < size:
 					count = 0
 					normalizeList = []
-					normalizeList.append('id' + str(counter))
+					#normalizeList.append(counter)
 					while count < k:
 							normalizeList.append(table[count][counter])
 							count+=1
-					normalizeList.append('airplane')
+					normalizeList.append(var.out)
 					normalizeTable.append(normalizeList)
 					counter+=1
 		return normalizeTable

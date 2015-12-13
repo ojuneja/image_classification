@@ -8,16 +8,17 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 import setfeatures
 import normalizefraction
+import variables as var
 import csv
 
 
 
-k = 10
+k = var.no_of_clusters
 vocab = []              # This is a list of every SIFT descriptor.
 raw_corpus = []
 imp = []
 sift = cv2.xfeatures2d.SIFT_create()
-mypath = './minidataset'
+mypath = var.path
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
 for image in onlyfiles:
@@ -53,7 +54,7 @@ for entry in raw_corpus:
 #print setfeatures.setFeatures(corpus,k)
 table =  normalizefraction.normalize(setfeatures.setFeatures(corpus,k),k)
 #print table
-with open("output.csv", "wb") as f:
+with open(var.outputfile, var.option) as f:
 	    writer = csv.writer(f)
 	    writer.writerows(table)
 
