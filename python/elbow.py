@@ -16,8 +16,9 @@ raw_corpus = []
 imp = []
 plotdata = []
 sift = cv2.xfeatures2d.SIFT_create()
-mypath ='/home/ojas/github/ai/image_classification/python/minidataset'
+mypath ='./minidataset'
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+#print onlyfiles
 count = 1
 while count <= k:
 	for image in onlyfiles:
@@ -34,7 +35,7 @@ while count <= k:
                                 	        vocab.append(row.tolist())
                                         	img_features.append(row.tolist())
 				raw_corpus.append(img_features)
-				
+	print "first " + str(count)				
 	#print raw_corpus		
 	# Perform clustering with k clusters. This will probably need tuning.
 	cluster = KMeans(count, n_init=1)
@@ -46,12 +47,16 @@ while count <= k:
 	distance = cluster.inertia_
 	plotdata.append(distance)
 	sum = sum + distance
+	print count	
 	count+=1
 list = []
+print "calculating variation"	
 average = sum / k
 for val in plotdata: list.append(abs(average-val))
 y = np.array([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])
 plt.scatter(list, y)
+print "plotting graph"
+print list
 plt.show()
 #plt.bar(range(0,max(list)), list)
 #plt.show()
