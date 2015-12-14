@@ -2,32 +2,32 @@
 
 
 #set this configuration to generate normalized features for train airplane
-path = './traincar'
+'''path = './traincar'
 out = 1
 option = 'wb'
-outputfile =  'output.csv'
+outputfile =  'output.csv' '''
 
 #set this configuration to generate normalized features for train not airplane
-'''path = './trainnotcar'
+'''path = './trainbird'
 out = -1
 option = 'a'
 outputfile =  'output.csv' '''
 
 #set this configuration to generate normalized features for test not airplane
-'''path = './testnotcar'
+'''path = './testbird'
 out = -1
 option = 'wb'
 outputfile =  'test.csv' '''
 
 #set this configuration to generate normalized features for test airplane
-'''path = './testcar'
+path = './testcar'
 out = 1
 option = 'a'
-outputfile =  'test.csv' '''
+outputfile =  'test.csv'
 
 
 #variables of test py files
-no_of_clusters = 40
+no_of_clusters = 100
 output = 1
 
 
