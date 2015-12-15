@@ -57,7 +57,7 @@ for image_path, descriptor in des_list[1:]:
     #print descriptors
 
 # Perform k-means clustering
-k = 40
+k = 50
 print k
 voc, variance = kmeans(descriptors, k, 1)
 
@@ -77,16 +77,16 @@ stdSlr = StandardScaler().fit(im_features)
 im_features = stdSlr.transform(im_features)
 
 
-print len(im_features)/3
-image_classes = [0] * 500
-image_classes+= [1] * 500
+print len(im_features)/2
+image_classes = [0] * 1000
+image_classes+= [1] * 1000
 
 print image_classes
 # Train the Linear SVM
 clf = LinearSVC()
 clf.fit(im_features, np.array(image_classes))
-classes = ['b','c']
+classes = ['d','a']
 
 
 # Save the SVM
-joblib.dump((clf, classes, stdSlr, k, voc), "model_big.pkl", compress=3)
+joblib.dump((clf, classes, stdSlr, k, voc), "model_large.pkl", compress=3)

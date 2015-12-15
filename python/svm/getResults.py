@@ -12,7 +12,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_recall_fscore_support
 
 # Load the classifier, class names, scaler, number of clusters and vocabulary 
-clf, classes_names, stdSlr, k, voc = joblib.load("model_big.pkl")
+clf, classes_names, stdSlr, k, voc = joblib.load("model_large.pkl")
 print k
 print classes_names
 
@@ -74,8 +74,8 @@ listresults =  clf.predict(test_features)
 print listresults
 
 if args["testingSet"]:
-    gt = [0]*100
-    gt += [1]*100
+    gt = [0]*300
+    gt += [1]*300
     print accuracy_score(gt, listresults)
     print precision_recall_fscore_support(gt, listresults, average='binary')
     predictions =  [classes_names[i] for i in listresults]
